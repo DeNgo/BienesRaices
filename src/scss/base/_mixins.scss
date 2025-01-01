@@ -29,8 +29,9 @@
     padding: 1rem 3rem;
     text-align: center;
     margin-top: $separacion / 2;
-
+    border: none;
     &:hover{
         background-color: darken($color: $bgColor, $amount: 5);
+        cursor: pointer;
     }
 }
