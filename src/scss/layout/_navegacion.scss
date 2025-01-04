@@ -9,10 +9,15 @@
 }
 
 .navegacion{
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.1s ease-in-out, opacity 0.1s linear;
+
     @include tablet{
         display: flex;
         align-items: center;
+        opacity: 1;
+        visibility: visible;
     }
     a{
         color: $blanco;
@@ -41,5 +46,6 @@
 }
 
 .mostrar{
-    display: block;
+    visibility: visible;
+    opacity: 1;
 }
