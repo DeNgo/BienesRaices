@@ -35,7 +35,7 @@
     visibility: hidden;
     opacity: 0;
     transition: visibility 0.1s ease-in-out, opacity 0.1s linear;
-
+    height: 0;
     @include tablet{
         display: flex;
         align-items: center;
@@ -71,4 +71,5 @@
 .mostrar{
     visibility: visible;
     opacity: 1;
+    height: auto;
 }
