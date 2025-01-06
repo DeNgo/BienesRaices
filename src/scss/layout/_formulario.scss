@@ -15,6 +15,9 @@
         display: block;
     }
 
+    input,select{
+        border-radius: 10px;
+    }
     input:not([type="submit"]),
     textarea,
     select{
@@ -38,5 +41,9 @@
     input[type="radio"]{
         margin: 0;
         width: auto;
+    }
+
+    fieldset {
+        border-radius: 10px;
     }
 }

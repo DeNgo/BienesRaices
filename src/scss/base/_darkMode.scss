@@ -22,4 +22,36 @@
             filter: invert(100%);
         }
     }
+
+    .resumen-propriedad {
+        .precio {
+            color: $verde;
+        }
+
+        .icono {
+            filter: invert(100%);
+        }
+    }
+
+    .texto-nosotros blockquote {
+        color: $blanco;
+    }
+
+    .formulario {
+
+        legend,
+        label,
+        p {
+            color: $blanco;
+        }
+
+        input:not([type="submit"]),
+        textarea,
+        select {
+            background-color: $grisOscuro;
+            color: $blanco;
+            border: 1px solid $grisOscuro;
+        }
+        
+    }
 }
