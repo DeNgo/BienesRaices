@@ -1,8 +1,14 @@
 .no-webp .inicio{
-    background-image: url(../img/header.jpg);
+    background-image: url(../img/portada.jpg);
 }
 .webp .inicio{
-    background-image: url(../img/header.webp);
+    background-image: url(../img/portada.webp);
+}
+.no-webp .inicio, .webp .inicio {
+    background-size: cover;
+    background-position: center;
+    background-color: rgba(0, 0, 0, 0.3); 
+    background-blend-mode: darken; 
 }
 
 .header{
