@@ -7,6 +7,12 @@ incluirTemplate('header');
     <h1>Crear</h1>
 
     <a href="/admin" class="boton boton-verde">Volver</a>
+
+    <form action="" class="formulario">
+        <fieldset>
+            <legend>Informacion General</legend>
+        </fieldset>
+    </form>
 </main>
 
 <?php
