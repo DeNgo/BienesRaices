@@ -29,7 +29,8 @@
     }
 
     textarea{
-        height: 10rem;
+        min-height: 10rem;
+        field-sizing: content;
     }
 
     .forma-contacto{
