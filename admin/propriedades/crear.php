@@ -9,6 +9,7 @@ incluirTemplate('header');
     <a href="/admin" class="boton boton-verde">Volver</a>
 
     <form action="" class="formulario">
+
         <fieldset>
             <legend>Informacion General</legend>
 
@@ -48,6 +49,7 @@ incluirTemplate('header');
         </fieldset>
 
         <input type="submit" value="Crear Propiedad" class="boton boton-verde">
+        
     </form>
 </main>
 
