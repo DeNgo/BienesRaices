@@ -39,7 +39,7 @@ incluirTemplate('header');
             <input type="number" id="garaje" placeholder="Ej: 1" min="0">
         </fieldset>
 
-        <fieldset>
+        <fieldset> 
             <legend>Vendedor</legend>
             <select>
                 <option value="1">Ruan</option>
