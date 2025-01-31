@@ -44,7 +44,7 @@ incluirTemplate('header');
             <select>
                 <option value="1">Ruan</option>
                 <option value="2">Nicolas</option>
-                <option value="3">Alex</option>
+                <!-- <option value="3">Alex</option> -->
             </select>
         </fieldset>
 
