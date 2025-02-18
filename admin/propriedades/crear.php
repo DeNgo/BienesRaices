@@ -2,8 +2,9 @@
     //Base de datos
     require '../../includes/config/database.php';
     $db = conectarDB();
-
-
+echo "<pre>";
+var_dump($_SERVER);
+echo "</pre>";
 require '../../includes/funciones.php';
 incluirTemplate('header');
 ?>
@@ -13,15 +14,15 @@ incluirTemplate('header');
 
     <a href="/admin" class="boton boton-verde">Volver</a>
 
-    <form class="formulario" method="GET" action="/admin/propiedades/crear.php">
+    <form class="formulario" method="POST" action="/admin/propiedades/crear.php">
         <fieldset>
             <legend>Informacion General</legend>
 
             <label for="titulo">Titulo:</label>
-            <input type="text" id="titulo" placeholder="Titulo Propiedad">
+            <input type="text" id="titulo" name="titulo" placeholder="Titulo Propiedad">
 
             <label for="precio">Precio:</label>
-            <input type="number" id="precio" placeholder="Precio Propiedad" min="1">
+            <input type="number" id="precio" name="precio" placeholder="Precio Propiedad" min="1">
 
             <label for="imagen">Imagen:</label>
             <input type="file" id="precio" accept="image/jpeg, image/png">
