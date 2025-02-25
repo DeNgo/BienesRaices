@@ -1,38 +1,63 @@
 <?php
 
-    require '../../includes/config/database.php';
-    $db = conectarDB();
+require '../../includes/config/database.php';
+$db = conectarDB();
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // echo "<pre>";
-        // var_dump($_POST);
-        // echo "</pre>";
 
-        $titulo        = $_POST['titulo'];
-        $precio        = $_POST['precio'];
-        $descripcion   = $_POST['descripcion'];
-        $habitaciones  = $_POST['habitaciones'];
-        $wc            = $_POST['wc'];
-        $estacionamiento = $_POST['estacionamiento'];
-        $vendedorId    = $_POST['vendedorId'];
+// Arreglo com mensajes de errores 
+$errores = [];
 
-        $imagen = '';
-        if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
-            $carpetaImagenes = '../../imagenes/';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            if (!is_dir($carpetaImagenes)) {
-                mkdir($carpetaImagenes, 0755, true);
-            }
 
-            $nombreImagen = $_FILES['imagen']['name'];
-            $tmpImagen    = $_FILES['imagen']['tmp_name'];
-            $imagenDestino = $carpetaImagenes . $nombreImagen;
-            
-            if (move_uploaded_file($tmpImagen, $imagenDestino)) {
-                $imagen = $nombreImagen;
-            }
+    $titulo        = $_POST['titulo'];
+    $precio        = $_POST['precio'];
+    $descripcion   = $_POST['descripcion'];
+    $habitaciones  = $_POST['habitaciones'];
+    $wc            = $_POST['wc'];
+    $estacionamiento = $_POST['estacionamiento'];
+    $vendedorId    = $_POST['vendedorId'];
+
+    if (!$titulo) {
+        $errores[] = "Debes añadir un título";
+    }
+    if (!$precio) {
+        $errores[] = "Debes añadir un Precio";
+    }
+    if (!$descripcion) {
+        $errores[] = "Debes añadir una descripción";
+    }
+    if (!$habitaciones) {
+        $errores[] = "Debes añadir las habitaciones";
+    }
+    if (!$wc) {
+        $errores[] = "Debes añadir el numero de baños";
+    }
+    if (!$estacionamiento) {
+        $errores[] = "Debes añadir el numero de estacionamientos";
+    }
+    if (!$vendedorId) {
+        $errores[] = "Elige un vendedor";
+    }
+
+
+    $imagen = '';
+    if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+        $carpetaImagenes = '../../imagenes/';
+
+        if (!is_dir($carpetaImagenes)) {
+            mkdir($carpetaImagenes, 0755, true);
         }
 
+        $nombreImagen = $_FILES['imagen']['name'];
+        $tmpImagen    = $_FILES['imagen']['tmp_name'];
+        $imagenDestino = $carpetaImagenes . $nombreImagen;
+
+        if (move_uploaded_file($tmpImagen, $imagenDestino)) {
+            $imagen = $nombreImagen;
+        }
+    }
+    if (empty($errores)) {
         $query = "INSERT INTO propriedades (titulo, precio, descripcion, habitaciones, wc, estacionamiento, imagen, vendedores_id)
                 VALUES ('$titulo', '$precio', '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$imagen', '$vendedorId')";
 
@@ -43,13 +68,23 @@
             echo "Error: " . mysqli_error($db);
         }
     }
+}
 
-    require '../../includes/funciones.php';
-    incluirTemplate('header');
+
+
+require '../../includes/funciones.php';
+incluirTemplate('header');
 ?>
 
 <main class="contenedor seccion">
     <h1>Crear</h1>
+
+    <?php foreach($errores as $error): ?>
+        <div class="alerta error">
+            <?php echo $error; ?>
+        </div>
+    <?php endforeach; ?>
+
 
     <a href="/admin" class="boton boton-verde">Volver</a>
 
@@ -83,9 +118,10 @@
             <input type="number" id="estacionamiento" name="estacionamiento" placeholder="Ej: 1" min="0">
         </fieldset>
 
-        <fieldset> 
+        <fieldset>
             <legend>Vendedor</legend>
             <select name="vendedorId">
+                <option value="" disabled selected>-- Seleccione --</option>
                 <option value="1">Ruan</option>
                 <option value="2">Nicolas</option>
                 <option value="3">Alex</option>
@@ -97,5 +133,5 @@
 </main>
 
 <?php
-    incluirTemplate('footer');
+incluirTemplate('footer');
 ?>
