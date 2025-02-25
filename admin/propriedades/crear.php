@@ -1,12 +1,12 @@
 <?php
-    // Conectar a la base de datos
+
     require '../../includes/config/database.php';
     $db = conectarDB();
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        echo "<pre>";
-        var_dump($_POST);
-        echo "</pre>";
+        // echo "<pre>";
+        // var_dump($_POST);
+        // echo "</pre>";
 
         $titulo        = $_POST['titulo'];
         $precio        = $_POST['precio'];
