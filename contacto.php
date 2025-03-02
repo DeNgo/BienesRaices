@@ -45,7 +45,7 @@ incluirTemplate('header');
 
         <fieldset>
             <legend>Contacto</legend>
-            <p>Como desea ser contactado</p>
+            <p>Metodo de Contacto</p>
             <div class="forma-contacto">
                 <label for="contactar-telefono">Telefono</label>
                 <input type="radio" name="contacto" value="telefono" id="contactar-telefono">
