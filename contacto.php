@@ -14,7 +14,7 @@ incluirTemplate('header');
 
     <h2>Cubra el formulario de contacto</h2>
 
-    
+
     <form class="formulario">
         <fieldset>
             <legend>Información Personal</legend>
