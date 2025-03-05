@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     eventListeners();
     darkMode();
 });
@@ -8,30 +8,30 @@ function eventListeners() {
     mobileMenu.addEventListener('click', navegacionResponsive);
 }
 
-function navegacionResponsive(){
+function navegacionResponsive() {
     const navegacion = document.querySelector('.navegacion');
     navegacion.classList.toggle('mostrar');
 }
 
-function darkMode(){
+function darkMode() {
     const prefiereDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
 
-    if(prefiereDarkMode.matches){
+    if (prefiereDarkMode.matches) {
         document.body.classList.add('dark-mode');
-    }else{
+    } else {
         document.body.classList.remove('dark-mode');
     }
 
-    prefiereDarkMode.addEventListener('change', function(){
-        if(prefiereDarkMode.matches){
+    prefiereDarkMode.addEventListener('change', function () {
+        if (prefiereDarkMode.matches) {
             document.body.classList.add('dark-mode');
-        }else{
+        } else {
             document.body.classList.remove('dark-mode');
         }
     });
 
     const botonDarkMode = document.querySelector('.dark-mode-boton');
-    botonDarkMode.addEventListener('click', function(){
+    botonDarkMode.addEventListener('click', function () {
         document.body.classList.toggle('dark-mode');
     });
 }
