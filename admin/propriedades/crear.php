@@ -17,6 +17,7 @@ $habitaciones  = "";
 $wc            = "";
 $estacionamiento = "";
 $vendedorId    = "";
+$creado = date('Y/m/d');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -69,8 +70,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
     if (empty($errores)) {
-        $query = "INSERT INTO propriedades (titulo, precio, descripcion, habitaciones, wc, estacionamiento, imagen, vendedores_id)
-                VALUES ('$titulo', '$precio', '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$imagen', '$vendedorId')";
+        $query = "INSERT INTO propriedades (titulo, precio, descripcion, habitaciones, wc, estacionamiento, creado, imagen, vendedores_id)
+                VALUES ('$titulo', '$precio', '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$creado', '$imagen', '$vendedorId')";
 
         $resultado = mysqli_query($db, $query);
         if ($resultado) {
