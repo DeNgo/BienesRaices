@@ -134,7 +134,7 @@ incluirTemplate('header');
             <legend>Vendedor</legend>
             <select name="vendedorId">
                 <option value="" disabled selected>-- Seleccione --</option>
-                <?php while($row = mysqli_fetch_assoc($resultado)) : ?>
+                <?php while ($row = mysqli_fetch_assoc($resultado)) : ?>
                     <option <?php echo $vendedorId === $row['id'] ? 'selected' : ''; ?> value="<?php echo $row['id']; ?>"><?php echo $row['nombre'] . " " . $row['apellido']; ?></option>
                 <?php endwhile; ?>
             </select>
