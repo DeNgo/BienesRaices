@@ -17,7 +17,7 @@ $habitaciones  = "";
 $wc            = "";
 $estacionamiento = "";
 $vendedorId    = "";
-$creado = date('Y/m/d');
+$creado = date('Y-m-d');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
