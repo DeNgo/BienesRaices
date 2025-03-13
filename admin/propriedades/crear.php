@@ -75,9 +75,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $resultado = mysqli_query($db, $query);
         if ($resultado) {
-            echo "Registro insertado correctamente.";
-        } else {
-            echo "Error: " . mysqli_error($db);
+
+            header('Location: /admin');
         }
     }
 }
