@@ -56,13 +56,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$vendedorId) {
         $errores[] = "Elige un vendedor";
     }
-    if(!$imagen['name'] || $imagen['error']){
+    if (!$imagen['name'] || $imagen['error']) {
         $errores[] = "Debes añadir una imagen válida";
     }
-    
+
     // Validacion de tamaño de imagen 
-    $medida = 1000 * 1000; 
-    if($imagen['size'] > $medida){
+    $medida = 1000 * 1000;
+    if ($imagen['size'] > $medida) {
         $errores[] = "La imagen es muy pesada";
     }
 
@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($errores)) {
 
         // Subida de archivos
-        
+
         // Crear carpeta
         $carpetaImagenes = '../../imagenes/';
 
