@@ -21,6 +21,7 @@ $creado = date('Y-m-d');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+
     $titulo        = mysqli_real_escape_string($db, $_POST['titulo']);
     $precio        = mysqli_real_escape_string($db, $_POST['precio']);
     $descripcion   = mysqli_real_escape_string($db, $_POST['descripcion']);
@@ -29,6 +30,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $estacionamiento = mysqli_real_escape_string($db, $_POST['estacionamiento']);
     $vendedorId    = mysqli_real_escape_string($db, $_POST['vendedorId']);
     $creado = date('Y-m-d');
+
+    // Asignar files hacia una variable
+    $imagen = $_FILES['imagen'];
+
 
     if (!$titulo) {
         $errores[] = "Debes añadir un título";
@@ -51,27 +56,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$vendedorId) {
         $errores[] = "Elige un vendedor";
     }
-
-
-    $imagen = '';
-    if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
-        $carpetaImagenes = '../../imagenes/';
-
-        if (!is_dir($carpetaImagenes)) {
-            mkdir($carpetaImagenes, 0755, true);
-        }
-
-        $nombreImagen = $_FILES['imagen']['name'];
-        $tmpImagen    = $_FILES['imagen']['tmp_name'];
-        $imagenDestino = $carpetaImagenes . $nombreImagen;
-
-        if (move_uploaded_file($tmpImagen, $imagenDestino)) {
-            $imagen = $nombreImagen;
-        }
+    if(!$imagen= ['name'] || $imagen['error']){
+        $errores[] = "Debes añadir una imagen";
     }
+    
+    // Validacion de tamaño de imagen 
+    $medida = 1000 * 100; 
+    if($imagen['size'] > $medida){
+        $errores[] = "La imagen es muy pesada";
+    }
+
+
+
     if (empty($errores)) {
-        $query = "INSERT INTO propriedades (titulo, precio, descripcion, habitaciones, wc, estacionamiento, creado, imagen, vendedores_id)
-                VALUES ('$titulo', '$precio', '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$creado', '$imagen', '$vendedorId')";
+        $query = "INSERT INTO propriedades (titulo, precio, descripcion, habitaciones, wc, estacionamiento, creado, vendedores_id)
+                VALUES ('$titulo', '$precio', '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$creado', '$vendedorId')";
 
         $resultado = mysqli_query($db, $query);
         if ($resultado) {
