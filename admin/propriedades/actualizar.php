@@ -1,5 +1,12 @@
 <?php
 
+$id = $_GET['id'];
+$id = filter_var($id, FILTER_VALIDATE_INT);
+
+if(!$id) {
+    header('Location: /admin'); 
+}
+
 require '../../includes/config/database.php';
 $db = conectarDB();
 
