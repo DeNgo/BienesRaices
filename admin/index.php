@@ -46,7 +46,7 @@ incluirTemplate('header');
                     <td><?php echo $propriedades['precio']; ?></td>
                     <td>
                         <a href="#" class="boton-rojo-block">Eliminar</a>
-                        <a href="admin/propriedades/actualizar.php" class="boton-amarillo-block">Actualizar</a>
+                        <a href="/admin/propriedades/actualizar.php" class="boton-amarillo-block">Actualizar</a>
                     </td>
                 </tr>
             <?php endwhile; ?>
