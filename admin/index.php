@@ -22,6 +22,8 @@ incluirTemplate('header');
     <h1>Administrador de Bienes Raices</h1>
     <?php if ($resultado == '1') : ?>
         <p class="alerta success">Propriedad Creada Correctamente</p>
+    <?php elseif ($resultado == '2') : ?>
+        <p class="alerta success">Propriedad Actualizada Correctamente</p>
     <?php endif; ?>
 
     <a href="/admin/propriedades/crear.php" class="boton boton-verde">Nueva Propriedad</a>
