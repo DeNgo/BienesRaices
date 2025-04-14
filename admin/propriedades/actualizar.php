@@ -80,21 +80,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (empty($errores)) {
-        // Puedes descomentar esta parte si quieres subir una nueva imagen
-        /*
+
         $carpetaImagenes = '../../imagenes/';
         if (!is_dir($carpetaImagenes)) {
             mkdir($carpetaImagenes);
         }
 
+        if($imagen['name']) {
+            $carpetaImagenes = '../../imagenes/';
+            if (!is_dir($carpetaImagenes)) {
+                mkdir($carpetaImagenes);
+            }
+            // Eliminar la imagen previa
+            unlink($carpetaImagenes . $propriedad['imagen']);
+        } else {
+            $nombreImagen = $propriedad['imagen'];
+        }
+
+        
+
         $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
         move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
-        */
+        
 
         // Actualización de datos
         $query = "UPDATE propriedades SET 
             titulo = '$titulo', 
             precio = '$precio', 
+            imagen = '$nombreImagen',
             descripcion = '$descripcion', 
             habitaciones = '$habitaciones', 
             wc = '$wc', 
