@@ -15,5 +15,5 @@
 }
 .boton-rojo-block{
     @include boton($rojo);
-    display: block;
+    width: 100%;
 }
