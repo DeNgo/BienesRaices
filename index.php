@@ -1,7 +1,7 @@
 <?php
 require 'includes/funciones.php';
 $inicio = true;
-incluirTemplate('header', $inicio);
+incluirTemplate('header', $inicio = true);
 ?>
 
 
