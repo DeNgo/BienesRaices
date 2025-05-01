@@ -1,8 +1,8 @@
 <?php
 require 'includes/config/database.php';
 $db = conectarDB();
-// Autenticar el usuario
 
+// Autenticar el usuario
 $errores = [];
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
@@ -18,10 +18,22 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     if(empty($errores)){
         // Revisar si el usuario existe
         $query = "SELECT * FROM usuarios WHERE email = '$email' LIMIT 1";
-        var_dump($query);
 
-        if($resultado ->num_rows){
-            
+        $resultado = mysqli_query($db, $query);
+
+        if($resultado->num_rows){
+            $usuario = mysqli_fetch_assoc($resultado);
+
+            $auth = password_verify($password, $usuario['password']);
+
+            if($auth){
+                session_start();
+                $_SESSION['usuario'] = $usuario['email'];
+                $_SESSION['login'] = true;
+
+            }else{
+                $errores[] = "La contraseña es incorrecta";
+            }
         }else{
             $errores[] = "El usuario no existe";
         }
