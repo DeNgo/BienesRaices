@@ -5,9 +5,6 @@ $db = conectarDB();
 
 $errores = [];
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    echo "<pre>";
-    var_dump ($_POST);
-    echo "</pre>";
 
     $email = mysqli_real_escape_string($db, filter_var($_POST['email'], FILTER_VALIDATE_EMAIL));
     $password = mysqli_real_escape_string($db, $_POST['password']);
@@ -17,6 +14,17 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     }
     if(!$password){
         $errores[] = "La contraseña es obligatoria";
+    }
+    if(empty($errores)){
+        // Revisar si el usuario existe
+        $query = "SELECT * FROM usuarios WHERE email = '$email' LIMIT 1";
+        var_dump($query);
+
+        if($resultado ->num_rows){
+            
+        }else{
+            $errores[] = "El usuario no existe";
+        }
     }
 }
 
@@ -39,10 +47,10 @@ incluirTemplate('header');
         <fieldset>
             <legend>Iniciar Sesión</legend>
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" placeholder="Tu Email" required>
+            <input type="email" name="email" id="email" placeholder="Tu Email" >
 
             <label for="password">Contraseña</label>
-            <input type="password" name="password" id="password" placeholder="Tu Contraseña" required>
+            <input type="password" name="password" id="password" placeholder="Tu Contraseña" >
         </fieldset>
         <input type="submit" value="Iniciar Sesión" class="boton boton-verde">
     </form>
