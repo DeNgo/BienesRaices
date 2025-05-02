@@ -1,5 +1,9 @@
 <?php
-
+require '../../includes/funciones.php';
+$auth = estaAutenticado();
+if(!$auth){
+    header('Location: /'); 
+}
 // Mostrar errores para debug
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -126,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-require '../../includes/funciones.php';
+
 incluirTemplate('header');
 ?>
 
